@@ -1,0 +1,57 @@
+[project]
+name = "sayogen"
+version = "0.0.0"
+requires-python = "==3.11.15"
+dependencies = [
+  "setuptools==60.0.0",
+  "click==8.3.1",
+  "pyyaml==6.0.3",
+  "starlette==0.52.1",
+  "uvicorn==0.41.0",
+  "transformers==5.0.0",
+  "pillow==11.3.0",
+  "opencv-python==4.9.0.80",
+  "sam3d-objects[p3d,inference]",
+  "flash-attn"
+]
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
+environments = ["sys_platform == \"linux\"and platform_machine == \"x86_64\""]
+override-dependencies = ["transformers==5.0.0"]
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+
+[[tool.uv.index]]
+name = "nvidia-kaolin"
+url = "https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu121.html"
+format = "flat"
+
+[tool.uv.sources]
+sam3d-objects = { git = "https://github.com/facebookresearch/sam-3d-objects.git" }
+flash-attn = { url = "https://github.com/mjun0812/flash-attention-prebuild-wheels/releases/download/v0.9.4/flash_attn-2.8.3+cu128torch2.11-cp311-cp311-linux_x86_64.whl" }
+
+[tool.uv.extra-build-dependencies]
+flash-attn = ["torch"]
+pytorch3d = ["torch"]
+gsplat = ["torch"]
+nvidia-pyindex = ["pip"]
+
+[build-system]
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+"sayogen.frontend" = ["static/**"]
+
+[tool.setuptools]
+include-package-data = true
+
+[project.scripts]
+sayogen = "sayogen:root_command"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"

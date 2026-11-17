@@ -1,0 +1,464 @@
+* {
+  box-sizing: border-box;
+  font-family: monospace, Helvetica, sans-serif;
+  text-wrap: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none
+}
+
+:root {
+  --color-background: #151520;
+  --color-foreground: #F0F0FF;
+
+  --color-container-dark: #232335;
+  --color-container-muted: #303045;
+  --color-container-bright: #404060;
+
+  --color-highlight-dark: color-mix(in srgb, var(--color-container-dark), #DFDFFF 7.5%);
+  --color-highlight-muted: color-mix(in srgb, var(--color-container-muted), #DFDFFF 7.5%);
+  --color-highlight-bright: color-mix(in srgb, var(--color-container-bright), #DFDFFF 7.5%);
+  --color-highlight-transparent: rgba(223, 223, 255, 0.075);
+
+  --size-large: 1.25rem;
+  --size-big: 1.1rem;
+  --size-medium: 1rem;
+  --size-small: 0.9rem;
+  --size-tiny: 0.75rem;
+
+  --space-large: 2rem;
+  --space-big: 1.5rem;
+  --space-medium: 1rem;
+  --space-small: 0.5rem;
+  --space-tiny: 0.25rem;
+
+  --border-style-dark: 0.075rem solid color-mix(in srgb, var(--color-container-dark), #FFFFFF 10%);
+  --border-style-muted: 0.075rem solid color-mix(in srgb, var(--color-container-muted), #FFFFFF 10%);
+  --border-style-bright: 0.075rem solid color-mix(in srgb, var(--color-container-bright), #FFFFFF 15%);
+  --border-style-highlight-dark: 0.075rem solid color-mix(in srgb, var(--color-container-dark), #FFFFFF 20%);
+  --border-style-highlight-muted: 0.075rem solid color-mix(in srgb, var(--color-container-muted), #FFFFFF 20%);
+  --border-style-highlight-bright: 0.075rem solid color-mix(in srgb, var(--color-container-bright), #FFFFFF 25%);
+
+  --border-radius-big: 0.5rem;
+  --border-radius-small: 0.25rem;
+
+  --ease-outQuint: cubic-bezier(0.22, 1, 0.36, 1)
+}
+
+h1 {
+  color: var(--color-foreground);
+  font-size: var(--size-large);
+  font-weight: bold;
+  margin: 0rem
+}
+
+h2 {
+  color: var(--color-foreground);
+  font-size: var(--size-big);
+  font-weight: bold;
+  margin: 0rem
+}
+
+h3 {
+  color: var(--color-foreground);
+  font-size: var(--size-medium);
+  font-weight: bold;
+  margin: 0rem
+}
+
+h4 {
+  color: var(--color-foreground);
+  font-size: var(--size-small);
+  font-weight: bold;
+  margin: 0rem
+}
+
+h5 {
+  color: var(--color-foreground);
+  font-size: var(--size-tiny);
+  font-weight: bold;
+  margin: 0rem
+}
+
+p {
+  color: var(--color-foreground);
+  font-size: var(--size-small);
+  font-weight: normal;
+  margin: 0rem
+}
+
+.container-solid-dark {
+  background-color: var(--color-container-dark);
+  border: var(--border-style-dark)
+}
+
+.container-solid-muted {
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted)
+}
+
+.container-solid-bright {
+  background-color: var(--color-container-bright);
+  border: var(--border-style-bright)
+}
+
+.container-glassy-dark {
+  background-color: color-mix(in srgb, color-mix(in srgb, var(--color-container-dark), #FFFFFF 1%), transparent 10%);
+  border: var(--border-style-dark);
+  backdrop-filter: blur(0.25rem) brightness(0.75)
+}
+
+.container-glassy-muted {
+  background-color: color-mix(in srgb, color-mix(in srgb, var(--color-container-muted), #FFFFFF 2%), transparent 10%);
+  border: var(--border-style-muted);
+  backdrop-filter: blur(0.25rem) brightness(0.75)
+}
+
+.container-glassy-bright {
+  background-color: color-mix(in srgb, color-mix(in srgb, var(--color-container-bright), #FFFFFF 3%), transparent 10%);
+  border: var(--border-style-bright);
+  backdrop-filter: blur(0.25rem) brightness(0.75)
+}
+
+.container-shadow {
+  box-shadow: 0rem 0rem 1rem 0rem rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0rem 0rem 1rem 0rem rgba(0,0,0,0.5);
+  -moz-box-shadow: 0rem 0rem 1rem 0rem rgba(0,0,0,0.5)
+}
+
+.button-dark {
+  color: var(--color-foreground);
+  background-color: var(--color-container-dark);
+  border: var(--border-style-dark);
+  padding: 0;
+  transition: background-color 0.5s var(--ease-outQuint), opacity 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.button-dark:hover:not(:disabled) {
+  background-color: var(--color-highlight-dark);
+  border: var(--border-style-highlight-dark)
+}
+
+.button-dark:disabled {
+  opacity: 0.5;
+  cursor: not-allowed
+}
+
+.button-muted {
+  color: var(--color-foreground);
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  padding: 0;
+  transition: background-color 0.5s var(--ease-outQuint), opacity 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.button-muted:hover:not(:disabled) {
+  background-color: var(--color-highlight-muted);
+  border: var(--border-style-highlight-muted)
+}
+
+.button-muted:disabled {
+  opacity: 0.5;
+  cursor: not-allowed
+}
+
+.button-bright {
+  color: var(--color-foreground);
+  background-color: var(--color-container-bright);
+  border: var(--border-style-bright);
+  padding: 0;
+  transition: background-color 0.5s var(--ease-outQuint), opacity 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.button-bright:hover:not(:disabled) {
+  background-color: var(--color-highlight-bright);
+  border: var(--border-style-highlight-bright)
+}
+
+.button-bright:disabled {
+  opacity: 0.5;
+  cursor: not-allowed
+}
+
+.button-transparent {
+  color: var(--color-foreground);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: background-color 0.5s var(--ease-outQuint), opacity 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.button-transparent:hover:not(:disabled) {
+  background-color: var(--color-highlight-transparent)
+}
+
+.button-transparent:disabled {
+  opacity: 0.5;
+  cursor: not-allowed
+}
+
+.input-text-dark {
+  outline: none;
+  color: var(--color-foreground);
+  background-color: var(--color-container-dark);
+  border: var(--border-style-dark);
+  cursor: text
+}
+
+.input-text-dark:focus:not(:disabled) {
+  border: var(--border-style-highlight-dark)
+}
+
+.input-text-dark:disabled {
+  cursor: not-allowed
+}
+
+.input-text-muted {
+  outline: none;
+  color: var(--color-foreground);
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  cursor: text
+}
+
+.input-text-muted:focus:not(:disabled) {
+  border: var(--border-style-highlight-muted)
+}
+
+.input-text-muted:disabled {
+  cursor: not-allowed
+}
+
+.input-text-bright {
+  outline: none;
+  color: var(--color-foreground);
+  background-color: var(--color-container-bright);
+  border: var(--border-style-bright);
+  cursor: text
+}
+
+.input-text-bright:focus:not(:disabled) {
+  border: var(--border-style-highlight-bright)
+}
+
+.input-text-bright:disabled {
+  cursor: not-allowed
+}
+
+.input-checkbox-dark {
+  appearance: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-container-dark);
+  border: var(--border-style-dark);
+  border-radius: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  transition: background-color 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.input-checkbox-dark:hover:not(:disabled) {
+  background-color: var(--color-highlight-dark)
+}
+
+.input-checkbox-dark:checked {
+  background-color: var(--color-highlight-dark);
+  border: var(--border-style-highlight-dark)
+}
+
+.input-checkbox-dark:checked::after {
+  content: "✓";
+  color: var(--color-foreground);
+  font-size: var(--size-big)
+}
+
+.input-checkbox-dark:disabled {
+  cursor: not-allowed
+}
+
+.input-checkbox-muted {
+  appearance: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  border-radius: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  transition: background-color 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.input-checkbox-muted:hover:not(:disabled) {
+  background-color: var(--color-highlight-muted);
+}
+
+.input-checkbox-muted:checked {
+  background-color: var(--color-highlight-muted);
+  border: var(--border-style-highlight-muted)
+}
+
+.input-checkbox-muted:checked::after {
+  content: "✓";
+  color: var(--color-foreground);
+  font-size: var(--size-big)
+}
+
+.input-checkbox-muted:disabled {
+  cursor: not-allowed
+}
+
+.input-checkbox-bright {
+  appearance: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-container-bright);
+  border: var(--border-style-bright);
+  border-radius: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  transition: background-color 0.5s var(--ease-outQuint);
+  cursor: pointer
+}
+
+.input-checkbox-bright:hover:not(:disabled) {
+  background-color: var(--color-highlight-bright)
+}
+
+.input-checkbox-bright:checked {
+  background-color: var(--color-highlight-bright);
+  border: var(--border-style-highlight-bright)
+}
+
+.input-checkbox-bright:checked::after {
+  content: "✓";
+  color: var(--color-foreground);
+  font-size: var(--size-big)
+}
+.input-checkbox-bright:disabled {
+  cursor: not-allowed
+}
+
+.input-range-dark {
+  background-color: transparent;
+  cursor: pointer
+}
+
+.input-range-dark::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 0.25rem;
+  background-color: var(--color-container-dark);
+  border: var(--border-style-dark);
+  border-radius: 1rem
+}
+
+.input-range-dark::-moz-range-track {
+  width: 100%;
+  height: 0.25rem;
+  background-color: var(--color-container-dark);
+  border: var(--border-style-dark);
+  border-radius: 1rem
+}
+
+.input-range-dark::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  border-radius: 100%;
+  transition: background-color 0.5s var(--ease-outQuint)
+}
+
+.input-range-dark::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  border-radius: 100%;
+  transition: background-color 0.5s var(--ease-outQuint)
+}
+
+.input-range-dark::-webkit-slider-thumb:hover:not(:disabled) {
+  background-color: var(--color-highlight-muted)
+}
+
+.input-range-dark::-moz-range-thumb:hover:not(:disabled) {
+  background-color: var(--color-highlight-muted)
+}
+
+.input-range-dark:disabled {
+  cursor: not-allowed
+}
+
+.input-range-muted {
+  background-color: transparent;
+  cursor: pointer
+}
+
+.input-range-muted::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 0.25rem;
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  border-radius: 1rem
+}
+
+.input-range-muted::-moz-range-track {
+  width: 100%;
+  height: 0.25rem;
+  background-color: var(--color-container-muted);
+  border: var(--border-style-muted);
+  border-radius: 1rem
+}
+
+.input-range-muted::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-container-bright);
+  border: var(--border-style-bright);
+  border-radius: 100%;
+  transition: background-color 0.5s var(--ease-outQuint)
+}
+
+.input-range-muted::-moz-range-thumb {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-container-bright);
+  border: var(--border-style-bright);
+  border-radius: 100%;
+  transition: background-color 0.5s var(--ease-outQuint)
+}
+
+.input-range-muted::-webkit-slider-thumb:hover:not(:disabled) {
+  background-color: var(--color-highlight-bright)
+}
+
+.input-range-muted::-moz-range-thumb:hover:not(:disabled) {
+  background-color: var(--color-highlight-bright)
+}
+
+.input-range-muted:disabled {
+  cursor: not-allowed
+}
+
+input::placeholder {
+  color: color-mix(in srgb, var(--color-foreground), transparent 50%)
+}
+
+select[multiple] option:checked {
+  background: none;
+  color: white;
+  box-shadow: none 0 0 10px 100px #000000 inset
+}
+
+@keyframes loading-spinner {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
